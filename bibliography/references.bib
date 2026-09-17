@@ -1,0 +1,80 @@
+% =============================================================================
+%  references.bib
+%
+%  One entry per work, cited from the text with \textcite{key} or
+%  \parencite{key}. Conventions that save pain later:
+%
+%   * Key format: firstauthorlastname + year + first word of title.
+%   * Brace proper nouns and acronyms so the style cannot lowercase them:
+%     title = {{BERT}: Pre-training of Deep {B}idirectional Transformers}
+%   * Prefer the publisher's / DBLP's BibTeX. Google Scholar's is often wrong
+%     about venue, year and author order.
+%   * KEEP ENTRIES SHORT: author, title, venue, year. Abbreviate the venue
+%     ("Proc. NeurIPS"), and delete pages, publisher, address, editors, month
+%     and DOI unless a reader could not find the work without them. Exported
+%     BibTeX carries far more than this -- trim it on the way in. See
+%     vaswani2017attention below for the shape. Proceedings are "Proc. X";
+%     journals are "J. X". A book keeps its publisher, but not the city.
+%   * Use @inproceedings for conference papers, @article for journals. Do not
+%     cite the arXiv preprint of a paper that was subsequently published.
+%   * Keep the file sorted by key so two people editing it collide less.
+% =============================================================================
+
+@article{example2020,
+  author  = {Doe, Jane and Roe, Richard},
+  title   = {An Example Journal Article Used by the Template},
+  journal = {J. Example Studies},
+  year    = {2020},
+}
+
+@inproceedings{example2021,
+  author    = {Doe, Jane},
+  title     = {An Example Conference Paper},
+  booktitle = {Proc. Examples},
+  year      = {2021},
+}
+
+@book{example2019,
+  author    = {Roe, Richard},
+  title     = {An Example Book},
+  publisher = {Example Press},
+  year      = {2019},
+}
+
+% ==============================================================================
+
+@inproceedings{vaswani2017attention,
+ author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+ booktitle = {Proc. NeurIPS},
+ title = {Attention is All you Need},
+ year = {2017}
+}
+
+@misc{love2024nntikz,
+    author = {Fraser Love},
+    title = {{NNTikZ} - {TikZ} Diagrams for Deep Learning and Neural Networks},
+    year = 2024,
+    url = {https://github.com/fraserlove/nntikz},
+    _note = {GitHub repository}
+}
+
+@inproceedings{sifa2019towards,
+  title={Towards automated auditing with machine learning},
+  author={Sifa, Rafet and Ladi, Anna and Pielka, Maren and Ramamurthy, Rajkumar and Hillebrand, Lars and Kirsch, Birgit and Biesner, David and Stenzel, Robin and Bell, Thiago and L{\"u}bbering, Max and N{\"u}tten, Ulrich and Bauckhage, Christian and Warning, Ulrich and F{\"u}rst, Benedikt and Khameneh, Tim Dilmaghani and Thom, Daniel and Huseynov, Ilgar and Kahlert, Roland and Schlums, Jennifer and Ismail, Hisham and Kliem, Bernd and Loitz, R{\"u}diger},
+  booktitle={Proc. DocEng},
+  year={2019}
+}
+
+@article{birch2012worldwide,
+  title={Worldwide prevalence of red-green color deficiency},
+  author={Birch, Jennifer},
+  journal={J. of the Optical Society of America A},
+  year={2012},
+}
+
+@book{goodfellow2016deep,
+  title     = {Deep Learning},
+  author    = {Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron},
+  publisher = {MIT Press},
+  year      = {2016}
+}

@@ -1,0 +1,90 @@
+% =============================================================================
+%  Fully-connected neural network.
+%
+%  Adapted from NNTikZ, Copyright (c) 2024 Fraser Love, MIT Licence:
+%  https://github.com/fraserlove/nntikz -- re-coloured with this template's
+%  palette and reduced to a bare fragment.
+%
+%  Colours come from the Tol `vibrant' scheme defined in aml-thesis.cls:
+%  input tolblue, hidden tolmagenta, output tolorange. Wiring and layer boxes
+%  are black -- they are structure, not data, so they take no palette colour.
+%  Nothing here hard-codes a hex value, so the figure follows the palette if it
+%  is ever re-pointed.
+% =============================================================================
+\begin{tikzpicture}[
+    >=LaTeX,
+    node/.style={circle, minimum width=2.25em, draw, thick},
+    innode/.style={node, draw=tolblue,   fill=tolblue!12},
+    hidnode/.style={node, draw=tolmagenta, fill=tolmagenta!12},
+    outnode/.style={node, draw=tolorange, fill=tolorange!12},
+    cell/.style={rectangle, rounded corners=2mm, minimum height=2.5em,
+                 minimum width=2.5em, draw=black, thick, dashed},
+    arrow/.style={-latex, semithick, draw=black}
+]
+
+    % Input layer
+    \foreach \x in {1,...,2}
+        \draw node at (0, -\x*1.25 - 0.625) [innode] (first_\x) {$x_\x$};
+    \draw node at (0, -5*1.25 + 0.625) [innode] (first_n) {$x_n$};
+    \path (first_2) -- (first_n) node[pos=0.38, scale=2] {\vdots};
+
+    % First hidden layer
+    \foreach \x in {1,...,3}
+        \node at (2.5, -\x*1.25) [hidnode] (second_\x){};
+    \draw node at (2.5, -5*1.25) [hidnode] (second_m) {};
+    \path (second_3) -- (second_m) node[pos=0.38, scale=2] {\vdots};
+
+    % Second hidden layer
+    \foreach \x in {1,...,3}
+        \node at (5, -\x*1.25) [hidnode] (third_\x){};
+    \draw node at (5, -5*1.25) [hidnode] (third_m) {};
+    \path (third_3) -- (third_m) node[pos=0.38, scale=2] {\vdots};
+
+    % Output layer
+    \foreach \x in {1,...,2}
+        \node at (7.5, -\x*1.25 - 0.625) [outnode] (fourth_\x){$\hat{y}_\x$};
+    \draw node at (7.5, -5*1.25 + 0.625) [outnode] (fourth_k) {$\hat{y}_m$};
+    \path (fourth_2) -- (fourth_k) node[pos=0.38, scale=2] {\vdots};
+
+    % Input -> hidden 1
+    \foreach \i in {1,...,2}
+        \foreach \j in {1,...,3}
+            \draw [arrow] (first_\i) to (second_\j);
+    \foreach \i in {1,...,2}
+        \draw [arrow] (first_\i) to (second_m);
+    \foreach \i in {1,...,3}
+        \draw [arrow] (first_n) to (second_\i);
+    \draw [arrow] (first_n) to (second_m);
+
+    % Hidden 1 -> hidden 2
+    \foreach \i in {1,...,3}
+        \foreach \j in {1,...,3}
+            \draw [arrow] (second_\i) to (third_\j);
+    \foreach \i in {1,...,3}
+        \draw [arrow] (second_\i) to (third_m);
+    \foreach \i in {1,...,3}
+        \draw [arrow] (second_m) to (third_\i);
+    \draw [arrow] (second_m) to (third_m);
+
+    % Hidden 2 -> output
+    \foreach \i in {1,...,3}
+        \foreach \j in {1,...,2}
+            \draw [arrow] (third_\i) to (fourth_\j);
+    \foreach \i in {1,...,3}
+        \draw [arrow] (third_\i) to (fourth_k);
+    \foreach \i in {1,...,2}
+        \draw [arrow] (third_m) to (fourth_\i);
+    \draw [arrow] (third_m) to (fourth_k);
+
+    % Layer labels
+    \node[above=0.25cm of first_1]  {$\bm{x}$};
+    \node[above=0.25cm of second_1] {$\bm{h}^{(1)}$};
+    \node[above=0.25cm of third_1]  {$\bm{h}^{(2)}$};
+    \node[above=0.25cm of fourth_1] {$\hat{\bm{y}}$};
+
+    % Layer groupings
+    \node[cell, fit=(first_1) (first_n)]   {};
+    \node[cell, fit=(second_1) (second_m)] {};
+    \node[cell, fit=(third_1) (third_m)]   {};
+    \node[cell, fit=(fourth_1) (fourth_k)] {};
+\end{tikzpicture}

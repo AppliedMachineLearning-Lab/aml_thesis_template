@@ -1,0 +1,66 @@
+% =============================================================================
+%  preamble.tex -- per-thesis configuration.
+%
+%  The house style lives in aml-thesis.cls: typography, colours, headings,
+%  captions, table and figure conventions, bibliography style. Do not edit that
+%  file to write your thesis -- edit this one.
+%
+%  This file is for the four things that are yours rather than the lab's:
+%    1. which .bib file you use
+%    2. extra packages your topic needs
+%    3. your own notation macros
+%    4. deliberate overrides of a class default
+%
+%  Chapters stay prose-only: a \usepackage or \newcommand in a text/ file
+%  belongs here instead.
+% =============================================================================
+
+% ---- 1. Bibliography resource -----------------------------------------------
+% The citation style is fixed by the class; this is just the file. Add more
+% \addbibresource lines if you keep references split across several files.
+\addbibresource{bibliography/references.bib}
+
+% ---- 2. Additional packages -------------------------------------------------
+% Anything your topic needs and the class does not already load. Check
+% aml-thesis.cls first: amsmath, newpxmath, tikz, booktabs, siunitx, listings,
+% cleveref, csquotes, subcaption, enumitem, etoolbox and biblatex are all loaded
+% there already, and loading a package twice with different options is an error.
+% Note that amssymb is deliberately absent: newpxmath supplies the AMS symbols
+% and the two clash.
+%
+% Frequently wanted, deliberately left out of the class:
+%   \usepackage[ruled,vlined]{algorithm2e}  % pseudo-code
+%   \usepackage{pdfpages}                   % include a signed declaration PDF
+%   \usepackage{rotating}                   % landscape (sidewaystable)
+%   \usepackage{glossaries}                 % acronyms and a glossary
+%
+% Load cleveref-sensitive packages with care: cleveref is already loaded by the
+% class, and anything that redefines referencing must come after it.
+
+% ---- 3. Your macros ---------------------------------------------------------
+% Notation shortcuts. Defining them once here, rather than typing the markup
+% out each time, is what lets you change your mind about notation in chapter 4
+% without editing chapters 1 through 3.
+%
+% Examples -- delete or replace:
+\newcommand{\vect}[1]{\bm{#1}}              % a vector:  \vect{x}
+\newcommand{\mat}[1]{\bm{#1}}               % a matrix:  \mat{X}
+\newcommand{\set}[1]{\mathcal{#1}}          % a set:     \set{H}
+\newcommand{\reals}{\mathbb{R}}             % the reals: \reals^{d}
+\newcommand{\expect}{\mathbb{E}}            % expectation
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% ---- 4. Overrides -----------------------------------------------------------
+% The class defines Paul Tol's seven `vibrant' data colours, and derives the
+% document accents from them (accent = tolblue, highlight = tolorange, plus the
+% two soft tints). Redefining an accent rebrands the document; redefining the
+% tol* colours changes what the figures use. Nothing else hard-codes a colour.
+%   \colorlet{accent}{tolteal}
+%   \definecolor{tolblue}{HTML}{1F77B4}
+%
+% Extra theorem environments join the four the class defines (definition,
+% theorem, proposition, lemma):
+%   \newtheorem{corollary}{Corollary}[chapter]
+%
+% To write in another language, reload babel here with your language.

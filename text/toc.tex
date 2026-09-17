@@ -1,0 +1,19 @@
+% Table of contents, figures and tables.
+%
+% hidelinks keeps the ToC black rather than a wall of coloured entries; the
+% links still work. \addtocontents is what puts "List of Figures" itself into
+% the ToC -- \listoffigures alone does not do that.
+{
+\hypersetup{hidelinks}
+\tableofcontents
+}
+\clearpage
+
+% Drop either of these two blocks if the thesis has few figures or tables.
+\addtocontents{lof}{\protect\addcontentsline{toc}{chapter}{List of Figures}}
+\listoffigures
+\clearpage
+
+\addtocontents{lot}{\protect\addcontentsline{toc}{chapter}{List of Tables}}
+\listoftables
+\clearpage

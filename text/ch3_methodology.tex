@@ -1,0 +1,119 @@
+% =============================================================================
+%  Chapter 3 -- Methodology
+% =============================================================================
+\chapter{Methodology}
+\label{sec:methodology}
+
+\section{Mathematical notation}
+\label{sec:notation}
+
+% NOTATION. Fix a convention in this section and never deviate from it:
+%   scalars       x        lowercase italic
+%   vectors       \bm{x}   lowercase bold        (use \bm, not \mathbf)
+%   matrices      \bm{X}   uppercase bold
+%   sets/spaces   \mathcal{H}, \mathbb{R}
+%
+% \bm{} is loaded by the class and bolds maths correctly, including Greek
+% letters and symbols; \mathbf{} silently fails on \alpha and friends.
+%
+% Define every symbol at first use, and keep text/notations.tex in step: that
+% front-matter list is written by hand and nothing checks it against the text.
+
+Throughout, scalars are written $x$, vectors $\bm{x}$, matrices $\bm{X}$, and
+the hypothesis space $\mathcal{H} \subseteq \mathbb{R}^{d}$.
+
+\section{Equations}
+\label{sec:equations}
+
+% EQUATIONS. Three rules that cover almost every case:
+%
+%  1. Punctuate them. A displayed equation is part of a sentence and takes the
+%     comma or period the sentence requires, as below.
+%  2. Number only what you reference. Use equation* (or \[ ... \]) otherwise --
+%     a column of unreferenced numbers is noise.
+%  3. Never use $$ ... $$. It is plain TeX, and it breaks spacing above and
+%     below the display.
+%
+% Reference with \eqref{eq:...}, which supplies the parentheses: "(3.1)".
+
+The cross-entropy loss over $N$ observations and $K$ classes is defined as
+\parencite{goodfellow2016deep}
+\begin{equation}
+  \mathcal{L}(\bm{\theta}) = -\frac{1}{N} \sum_{i=1}^{N} \sum_{k=1}^{K}
+    y_{ik} \log \hat{y}_{ik}(\bm{\theta}),
+  \label{eq:cross_entropy}
+\end{equation}
+where $\hat{y}_{ik}$ denotes the predicted probability that observation $i$
+belongs to class $k$. Minimising \eqref{eq:cross_entropy} with respect to
+$\bm{\theta}$ yields the fitted model.
+
+% An unnumbered display, for an aside you will never point back to:
+\begin{equation*}
+  z_t = \frac{y_t - \mu}{\sigma}.
+\end{equation*}
+
+\section{Definitions and theorems}
+\label{sec:theorems}
+
+% Four environments are predefined by the class: definition, theorem,
+% proposition, lemma. They are numbered per chapter (Definition 3.1, 3.2, ...).
+% Add more with \newtheorem in preamble.tex if you need them.
+
+\begin{definition}[Named definition]
+\label{def:example}
+State the object being defined precisely, and give it a name in the brackets so
+it can be referred to by name rather than only by number.
+\end{definition}
+
+\begin{theorem}
+\label{thm:example}
+State the claim. If you prove it, the proof follows in a \texttt{proof}
+environment, which ends with an automatic QED square.
+\end{theorem}
+
+\begin{proof}
+The actual proof.
+\end{proof}
+
+\section{Model architecture}
+\label{sec:architecture}
+
+% STYLE: describe the model in enough detail that someone could rebuild it:
+% the layers and their sizes, the activation, what is trainable and what is
+% frozen, and where the numbers came from. A hyperparameter that was tuned
+% should say so; one inherited from a paper should cite it.
+%
+% A diagram earns its place here more than almost anywhere else in the thesis,
+% because an architecture is far quicker to see than to read. See
+% \Cref{sec:figures} for the conventions.
+
+Placeholder description of the model, also shown in
+\Cref{fig:multihead_attention}.
+
+\begin{figure}
+\centering
+\input{figures/examples/multihead_attention.tex}
+\caption[Multi-head attention]{Multi-head attention
+\parencite{vaswani2017attention}: $H$ heads each project $\bm{Q}$, $\bm{K}$ and
+$\bm{V}$ through their own linear map and attend in parallel, and their outputs
+are concatenated and projected once more. Adapted from
+\textcite{love2024nntikz}.}
+\label{fig:multihead_attention}
+\end{figure}
+
+\section{Algorithms and code}
+\label{sec:algorithms}
+
+% CODE. Use listings for real source code you want reproduced verbatim, and a
+% dedicated algorithm package (algorithm2e, algpseudocode) for pseudo-code.
+% Keep listings short -- more than ~20 lines belongs in the appendix or a
+% repository, with a URL in a footnote.
+
+\begin{lstlisting}[language=Python,caption={Keep listings short and captioned.},label={alg:example}]
+def train(model, loader, optimiser):
+    for batch in loader:
+        loss = model.loss(batch)
+        loss.backward()
+        optimiser.step()
+    return model
+\end{lstlisting}

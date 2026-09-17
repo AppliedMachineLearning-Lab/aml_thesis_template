@@ -1,0 +1,43 @@
+% =============================================================================
+%  Lab thesis template -- main document.
+%
+%  Build:  make          (latexmk -pdf, runs biber and reruns as needed)
+%  Clean:  make clean
+%
+%  This file should stay this short. It sets the document class options and
+%  lists the parts in order. House style lives in aml-thesis.cls, per-thesis
+%  configuration in preamble.tex, and all prose in text/.
+% =============================================================================
+
+% Layout is a class option:
+%   regular  screen/submission -- uniform margins, no blank filler pages
+%   print    binding           -- alternating margins, blank versos
+% Other options (DIV, paper size) are passed straight through to scrreprt.
+\documentclass[regular]{aml-thesis}
+
+% Per-thesis configuration: your .bib file, extra packages, your own macros.
+% The house style lives in aml-thesis.cls and should not need editing.
+\input{preamble}
+
+\begin{document}
+
+% ---- Front matter (roman page numbers) --------------------------------------
+\input{text/titlepage}
+\input{text/abstract}
+\input{text/acknowledgements}
+\input{text/toc}
+\input{text/notations}
+\input{text/abbreviations}
+
+% ---- Body (arabic page numbers, restarted at 1) ------------------------------
+\input{text/ch1_introduction}
+\input{text/ch2_background}
+\input{text/ch3_methodology}
+\input{text/ch4_experiments}
+\input{text/ch5_conclusion}
+
+% ---- Back matter -------------------------------------------------------------
+\input{text/bibliography}
+\input{text/appendix}
+
+\end{document}

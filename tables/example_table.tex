@@ -1,0 +1,37 @@
+% =============================================================================
+%  Worked table example -- the house style. Copy this file to start a new one.
+%
+%  Like a figure fragment, this file is a BARE \tabular: no table environment,
+%  no caption, no label. Those are supplied at the call site, so the same
+%  fragment can be reused elsewhere with a different caption.
+%
+%  The conventions it demonstrates:
+%    * booktabs rules only -- \toprule, \midrule, \bottomrule. Never \hline,
+%      and no vertical rules. A table that seems to need them needs fewer
+%      columns. The rules are black: a table's structure is not a place for
+%      colour.
+%    * Header row and the leftmost (label) column in \textbf.
+%    * Zebra striping on alternate body rows with \rowcolor{gray!10}, and
+%      \rowcolor{white} on the header so it stays clear of the banding.
+%      For a long table, \rowcolors{2}{white}{gray!10} before the tabular
+%      automates the alternation instead of marking every second row by hand.
+%    * Numbers in \texttt, which sets them in Fira Mono: the figures are then
+%      tabular width and line up column-wise.
+%    * Report the same number of decimals down a column.
+%
+%  Centred \texttt columns align on the character grid, not the decimal point,
+%  so a value of a different width (100.00 below) sits slightly off its
+%  neighbours. If exact decimal alignment matters more than the monospaced
+%  look, siunitx is loaded: use S[table-format=3.2] instead of c.
+% =============================================================================
+\begin{tabular}{lcc} 
+    \toprule
+    \rowcolor{white}\textbf{Character} & \textbf{Height (in cm)} &  \textbf{Relative height (in \%)}\\
+    \midrule
+    \textbf{Frodo} & \texttt{124} & \texttt{62.62}  \\
+    \rowcolor{gray!10}\textbf{Legolas} & \texttt{183} & \texttt{92.42} \\
+    \textbf{Gimli} & \texttt{137} & \texttt{69.19} \\
+    \rowcolor{gray!10}\textbf{Samwise} & \texttt{127} & \texttt{64.14} \\
+    \textbf{Aragorn} & \texttt{198} & \texttt{100.00} \\
+    \bottomrule
+\end{tabular}

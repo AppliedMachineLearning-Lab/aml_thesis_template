@@ -1,0 +1,57 @@
+% =============================================================================
+%  Chapter 4 -- Experiments and Results
+% =============================================================================
+\chapter{Experiments and Results}
+\label{sec:experiments}
+
+\section{Experimental setup}
+\label{sec:setup}
+
+% STYLE: this section exists so that someone else can reproduce your numbers.
+% Name every choice that affects the result: data splits and their dates,
+% preprocessing, hyperparameter search space, the selection criterion, the
+% hardware and the random seeds. If a choice was arbitrary, say so -- that is
+% more honest and more useful than inventing a justification.
+
+Placeholder description of the setup.
+
+\section{Results}
+\label{sec:results}
+
+% TABLES work exactly like figures: tables/*.tex holds a BARE \tabular, and the
+% table environment, caption and label are supplied here at the call site.
+% The house style -- booktabs rules, bold headers and row labels, zebra
+% striping, monospaced figures -- is documented inside tables/example_table.tex.
+%
+% One difference from figures: a table's \caption goes ABOVE it, a figure's
+% below. Putting \caption before the \input does this.
+%
+% STYLE: this section reports what happened. Interpretation goes in the
+% discussion below. Keeping the two apart is what stops a results chapter from
+% turning into an argument.
+%
+% Quote numbers in the prose as well as the table -- a reader should get the
+% headline result without parsing a grid. Every table must be referenced.
+
+\Cref{tab:example} reports the main comparison.
+
+\begin{table}
+\centering
+\caption[Heights of selected characters]{Heights of selected characters, in
+centimetres and relative to the
+tallest. A caption is a full sentence and states the units and the sample, so
+the table can be read without hunting through the prose.}
+\label{tab:example}
+\input{tables/example_table.tex}
+\end{table}
+
+\section{Discussion}
+\label{sec:discussion}
+
+% STYLE: now interpret. Why did the winner win? Where does the approach fail,
+% and on which inputs? Which result surprised you?
+%
+% State the limitations here rather than waiting for the viva. A limitation you
+% identify yourself reads as competence; one the examiner finds first does not.
+
+Placeholder discussion.

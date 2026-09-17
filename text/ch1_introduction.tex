@@ -1,0 +1,127 @@
+% =============================================================================
+%  Chapter 1 -- Introduction
+% =============================================================================
+%
+%  LABELS. Every label carries a type prefix, so a reference reads unambiguously
+%  and you can tell from \ref what will come back:
+%      \label{sec:...}   chapters, sections, subsections
+%      \label{fig:...}   figures
+%      \label{tab:...}   tables
+%      \label{eq:...}    equations
+%      \label{alg:...}   algorithms / listings
+%  Reference them with \Cref{sec:foo} ("Section 2") or \cref{} mid-sentence.
+%  Never write "see section \ref{...}" by hand: cleveref (loaded by the class)
+%  supplies the word, and keeps it correct if the float moves.
+% =============================================================================
+
+% The body restarts page numbering at 1 in arabic. This block belongs to the
+% FIRST body chapter only -- do not copy it into chapters 2-5.
+\blankpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+\label{sec:introduction}
+
+% A template note. Delete it along with this comment once you start writing.
+\emph{The number of chapters in this template, and the names they carry, are a
+suggestion rather than a requirement. Rename them, merge them, split them or
+drop them as the work demands. What follows is a common arrangement, not a prescribed one.}
+
+\section{Motivation}
+\label{sec:motivation}
+
+% STYLE: the introduction answers four questions, in this order, and each
+% deserves roughly a paragraph or two. Resist the urge to start with a history
+% of the field.
+%
+%   1. What is the problem, and why should anyone care?
+%   2. What has been tried, and where specifically does it fall short?
+%      (One paragraph. The detailed treatment goes in Chapter 2.)
+%   3. What do you do about it? State the contribution plainly.
+%   4. What did you find? Yes, give away the result here. A thesis is not a
+%      detective novel.
+%
+% Write in the past tense for what you did ("we trained"), present tense for
+% what is true ("the model generalises"). Pick "we" or the passive voice and
+% hold it for the whole thesis; do not alternate.
+
+Placeholder prose. Replace this section following the four-question structure
+in the comments above.
+
+\section{Research question}
+\label{sec:research_question}
+
+% STYLE: state the research question explicitly and set it off so a reader can
+% find it without hunting. A short paragraph at most -- ideally the question
+% itself in one sentence, with a sentence or two around it to fix scope and
+% terms. If it runs longer than that, it is doing work that belongs in the
+% motivation above. This is the spine of the thesis:
+% every chapter that follows should be traceable back to it, and
+% \Cref{sec:conclusion} has to answer it in as many words.
+%
+% A usable research question is:
+%   * answerable with the evidence you can actually gather -- not "is X good?"
+%     but "does X outperform Y on Z, and under which conditions?";
+%   * narrow enough that a wrong answer is possible. If no result could have
+%     contradicted it, it is a topic, not a question;
+%   * free of the answer. "Why does X improve Y?" presumes it does -- establish
+%     that first, or ask whether it does.
+%
+% Sub-questions are fine, and often clearer than one overloaded sentence: state
+% the main question, then two or three that decompose it. Do not exceed that --
+% a thesis that asks five questions usually answers none of them.
+
+This thesis addresses the following research question:
+\begin{quote}
+  \emph{One sentence, ending in a question mark, that the rest of the thesis
+  exists to answer. Where the question needs it, one or two further sentences
+  fixing its scope: the setting it applies to, or what a term in it is taken to
+  mean. No more than a short paragraph in total.}
+\end{quote}
+% Optional decomposition -- delete if the question above stands on its own.
+It is approached through two sub-questions:
+\begin{enumerate}[itemsep=2pt,topsep=4pt]
+  \item A narrower question whose answer the main question depends on.
+  \item A second one.
+\end{enumerate}
+
+\section{Contributions}
+\label{sec:contributions}
+
+% STYLE: an explicit, numbered list of contributions is the single highest-value
+% paragraph in the thesis -- it is what an examiner looks for first. Each item
+% should be something you could defend as novel or as real work performed.
+
+This thesis makes the following contributions:
+\begin{enumerate}[itemsep=2pt,topsep=4pt]
+  \item A concrete, verifiable claim about something you built or showed.
+  \item A second one. Three to five items is the usual range.
+  \item A third one.
+\end{enumerate}
+
+\section{Outline}
+\label{sec:outline}
+
+% STYLE: one sentence per chapter, naming what the reader will get from it.
+% Keep it short -- this section is a signpost, not a summary.
+
+The front matter carries four reference lists, and they divide into two kinds.
+The \emph{List of Figures} and \emph{List of Tables} are indexes: they let a
+reader who remembers a diagram find it again, and they are generated
+automatically from the short form of each caption, so they need no maintenance
+beyond writing good captions. The \emph{List of Notations} and \emph{List of
+Abbreviations} are glossaries: they let a reader who has forgotten what
+$\mathcal{L}$ or \textsc{ner} means look it up without hunting back through
+the text for its first use. Those two are written by hand in
+\texttt{text/notations.tex} and \texttt{text/abbreviations.tex}, and nothing
+checks them, so a symbol renamed in a later chapter goes stale in the list
+silently. Keep them in step as you write rather than at the end, and delete
+either list if the thesis has no notations or abbreviations. Neither
+replaces introducing a symbol or expanding an abbreviation at first use in the
+prose.
+
+\Cref{sec:background} reviews prior work on \dots{}
+\Cref{sec:methodology} introduces \dots{}
+\Cref{sec:experiments} evaluates \dots{}
+\Cref{sec:conclusion} concludes and discusses limitations.

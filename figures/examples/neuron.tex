@@ -1,0 +1,41 @@
+% =============================================================================
+%  A single artificial neuron.
+%
+%  Adapted from NNTikZ, Copyright (c) 2024 Fraser Love, MIT Licence:
+%  https://github.com/fraserlove/nntikz -- re-coloured with this template's
+%  palette and reduced to a bare fragment.
+%
+%  Roles match the other network figures: inputs tolblue, unit tolmagenta,
+%  output tolorange, wiring black.
+% =============================================================================
+\begin{tikzpicture}[
+    >=LaTeX,
+    node/.style={circle, minimum width=2.25em, draw, thick},
+    innode/.style={node, draw=tolblue,     fill=tolblue!12},
+    midnode/.style={node, draw=tolmagenta, fill=tolmagenta!12},
+    outnode/.style={node, draw=tolorange,  fill=tolorange!12},
+    arrow/.style={-latex, semithick, draw=black},
+    wlabel/.style={midway, fill=white, inner sep=1.5pt}
+]
+
+    % Inputs
+    \foreach \x in {0,1,2}
+        \node[innode] (x\x) at (0,-\x*1.25) {$x_{\x}$};
+    \node[innode] (xm) at (0,-4*1.25) {$x_{n}$};
+    \path (x2) -- (xm) node[pos=0.35, scale=2] {\vdots};
+
+    % Summation unit and output
+    \node[midnode] (z) at (2.5,-2.5) {$z$};
+    \node[outnode, right of=z, node distance=2.5cm] (yhat) {$\hat{y}$};
+
+    % Weighted inputs
+    \draw[arrow] (x0) -- (z) node[wlabel] {$w_0$};
+    \foreach \x in {1,...,2}
+        \draw[arrow] (x\x) -- (z) node[wlabel] {$w_{\x}$};
+    \draw[arrow] (xm) -- (z) node[wlabel] {$w_{n}$};
+
+    % Activation
+    \draw[arrow] (z) -- (yhat) node[wlabel] {$\sigma(z)$};
+
+    \node[above of=z, node distance=1.2cm] {$z = \bm{w}^\top \bm{x}$};
+\end{tikzpicture}

@@ -1,0 +1,224 @@
+% =============================================================================
+%  Chapter 2 -- Background and Related Work
+% =============================================================================
+\chapter{Background and Related Work}
+\label{sec:background}
+
+\section{Citing}
+\label{sec:citing}
+
+% CITATIONS. This template uses biblatex with the authoryear style. There are
+% exactly two commands you need, and the difference is grammatical:
+%
+%   \textcite{key}   -> "Vaswani et al. (2017) showed ..."
+%                       The authors are the subject of your sentence.
+%   \parencite{key}  -> "... as has been shown (Vaswani et al. 2017)."
+%                       The citation is an aside.
+%
+% Do NOT use plain \cite: under authoryear its output is ambiguous and it will
+% quietly produce a different shape than the two above.
+%
+% Page-specific references take an optional argument:
+%   \parencite[p.~42]{key}     \textcite[see][ch.~3]{key}
+%
+% Add entries to bibliography/references.bib. Prefer the publisher's or DBLP's
+% BibTeX over Google Scholar's, which is frequently wrong about venue and year.
+
+Whenever a \emph{claim} is made, it must either be proven in the manuscript or
+attributed to published work that supports it. An unsupported claim is the most
+common thing an examiner marks in a draft.
+
+A claim proven in the manuscript still needs a pointer to its proof, and the
+reader should never have to go looking. Where the evidence sits in the same
+section, say so in place, e.g., \emph{the derivation below establishes this}.
+Where it sits anywhere else, cross-reference it: \Cref{sec:experiments}, never
+\emph{as shown earlier}. Prefer an explicit \texttt{\textbackslash Cref} to a
+bare \emph{above} or \emph{below} even within a single section, because floats
+move: a figure that migrates to the next page turns \emph{the figure above}
+into a small lie, and nothing warns you when it happens.
+
+The attribution takes one of two forms, and the difference is grammatical.
+% Note the \texttt{\textbackslash ...} spelling: writing a bare \textcite in
+% prose makes LaTeX swallow the next character as its citation key.
+Use \texttt{\textbackslash textcite} when the authors are the subject of your
+sentence: as \textcite{sifa2019towards} show, financial auditors can use
+machine learning tools to lighten their workload. Use
+\texttt{\textbackslash parencite} when the citation is an aside, supporting a
+claim you make in your own voice: machine learning is already applied to audit
+workflows \parencite{sifa2019towards}.
+
+Cite a specific page or chapter with the optional argument,
+\parencite[p.~42]{example2020}, and give several sources at once by separating
+the keys with commas \parencite{example2020,example2021}.
+
+Keep the entries themselves short. An entry needs only what identifies the work, i.e.,
+author, title, venue, year , and the venue should be abbreviated:
+\emph{Proc.\ NeurIPS}, not \emph{Proceedings of the 30th International
+Conference on Neural Information Processing Systems}. Drop pages, publisher,
+address, editors, month and DOI unless a reader would genuinely struggle to
+find the work without them. Exporters are the problem here: Google Scholar and
+publisher sites emit every field they hold, and pasting that in unedited gives
+a bibliography three times longer than it needs to be, in which the useful
+information is harder to see. Trim on the way in. The
+\texttt{vaswani2017attention} \parencite{vaswani2017attention} entry in \texttt{bibliography/references.bib} is
+the model: four fields, and nothing a reader does not need.
+
+\section{Figures}
+\label{sec:figures}
+
+% FIGURES. Diagram sources live in figures/ as BARE FRAGMENTS -- a file that
+% begins with \begin{tikzpicture} and has no \documentclass and no
+% \begin{document}. The figure environment, caption and label are supplied here
+% at the call site, never inside the fragment.
+%
+% Why: the same fragment can then be reused in a paper or slide deck unchanged,
+% with a different caption.
+%
+% figures/ has two subdirectories:
+%   figures/template/  the logos, which stay
+%   figures/examples/  the worked example diagrams, which are demonstrations
+%                      and should be deleted as your own figures replace them.
+%
+% Placement is covered in the prose below -- it is a rule students break
+% constantly, so it belongs in the rendered document, not in a comment.
+%
+% Captions: a full sentence ending in a period, below the figure. It should be
+% understandable without the surrounding text. Every figure MUST be referenced
+% from the prose -- an unreferenced figure is a layout accident.
+%
+% Colour: the class defines Paul Tol's `vibrant' scheme as tolorange, tolblue,
+% tolcyan, tolmagenta, tolred, tolteal and tolgrey. Take them from the top of
+% that list for any colour in a figure, decorative or not. The document accents
+% are drawn from the same scheme (accent = tolblue, highlight = tolorange), so
+% using either in a figure is safe -- but name the tol* colour rather than the
+% accent, so the figure keeps its palette if the accents are ever re-pointed.
+
+Figures are \emph{floats}: LaTeX decides where to put them. Written as a plain
+\texttt{\textbackslash begin\{figure\}}, with no optional argument, a figure is
+placed at the top or bottom of a page, or on a page of its own, wherever it
+fits without tearing a hole in the running text. That default is almost always
+the right answer, and it is the reason figures are numbered: the reader is sent
+to them by number, not by position.
+
+Placement can be forced with an optional argument, and this is where most
+figure trouble starts. \texttt{[h]} asks for \emph{here}; \texttt{[!h]} asks
+more insistently, telling LaTeX to ignore its own limits on how much of a page
+a float may occupy; \texttt{[H]}, from the \texttt{float} package, nails the
+figure in place and refuses to move it at all. Each degrades the page when the
+figure does not fit: \texttt{[!h]} commonly defers it to the next page anyway,
+having first left a short page behind, and \texttt{[H]} opens a large area of
+white space above the figure rather than reflowing anything.
+
+Reserve forced placement for the cases that genuinely need it, such as a run of
+small diagrams that must be read in the order they appear, or a figure that a
+sentence physically points at. Everywhere else, leave the option off.
+\Cref{fig:neural_network} carries no placement option, and LaTeX has put it
+wherever it fitted; the sentence you are reading does not care where that was.
+It follows that the prose should never say \emph{the figure below}: name the
+figure, and the sentence stays true wherever the figure lands.
+
+Give every caption a short form as well, as
+\texttt{\textbackslash caption[short]\{long\}}: the short one is what the List
+of Figures prints, which keeps that list scannable instead of reproducing three
+lines of explanation per entry.
+
+A figure taken or adapted from elsewhere must say so in its caption, with a
+citation like any other borrowed material; \Cref{fig:neural_network} shows an example how to do this.
+
+For neural network architectures in particular, we recommend the
+NNTikZ\footnote{\href{https://github.com/fraserlove/nntikz}{github.com/fraserlove/nntikz}.}
+collection \parencite{love2024nntikz} as a starting point.
+
+
+\begin{figure}
+\centering
+\input{figures/examples/neural_network.tex}
+\caption[A fully-connected feed-forward network]{A fully-connected
+feed-forward network mapping an input $\bm{x}$ to a
+prediction $\hat{\bm{y}}$ through two hidden layers. A caption is a full
+sentence and explains what the reader is looking at. Adapted from
+\textcite{love2024nntikz}.}
+\label{fig:neural_network}
+\end{figure}
+
+\subsection{Colour}
+\label{sec:colour}
+
+Whenever colour is used at all, it should come from a colour-blind-safe
+palette.  Red--green colour vision deficiency affects roughly
+one in twelve men and one in 250 women of European descent, and between
+4\% and 6.5\% of men of East Asian descent \parencite{birch2012worldwide}.
+A figure that distinguishes its series by red against green is therefore
+unreadable to part of any audience, and a thesis is read by a small audience
+in which one such reader is enough.
+
+Which palette is a matter of taste: any scheme designed for colour vision
+deficiency will serve, and several good ones exist. As a starting point we
+suggest Paul Tol's schemes,\footnote{Paul Tol, \emph{Colour Schemes}:
+\href{https://sronpersonalpages.nl/~pault/}{sronpersonalpages.nl/\textasciitilde pault}.}
+of which this template ships the \emph{vibrant} one as a worked example,
+defined in \texttt{aml-thesis.cls} as
+\textcolor{tolorange}{\texttt{tolorange}},
+\textcolor{tolblue}{\texttt{tolblue}},
+\textcolor{tolcyan}{\texttt{tolcyan}},
+\textcolor{tolmagenta}{\texttt{tolmagenta}},
+\textcolor{tolred}{\texttt{tolred}},
+\textcolor{tolteal}{\texttt{tolteal}} and
+\textcolor{tolgrey}{\texttt{tolgrey}}. \Cref{fig:neural_network,fig:network_pair}
+are coloured this way, showing the palette in action. Both are deliberately
+more colourful than they likely need to be, in order to display the scheme; colour
+figures to your own taste.
+
+For figures generated in Python, Tol's schemes are packaged as
+\texttt{tol\_colors},\footnote{\href{https://github.com/Descanonge/tol_colors}{github.com/Descanonge/tol\_colors}.}
+which plugs into Matplotlib directly, so plots match the diagrams drawn in
+TikZ.
+
+\subsection{Sub-figures}
+\label{sec:subfigures}
+
+% Two related panels side by side. Each subfigure gets its own caption and
+% label; reference them as \cref{fig:neuron} or \cref{fig:network_pair}, and
+% \subref gives just the (a)/(b) marker for use inside the main caption.
+% The width arguments should sum to slightly less than 1.0 to leave a gutter.
+
+Two panels that belong together should share one figure number rather than
+take two. \Cref{fig:network_pair} does this: each panel carries its own
+caption and label, so \cref{fig:neuron} and \cref{fig:rnn} can be cited
+separately, while the shared caption explains what the pair has in common.
+
+\begin{figure}
+\centering
+% Each panel is boxed to a common height and centred inside it, so the two
+% sit on a shared vertical axis and their captions line up. Without the
+% minipage the shorter panel hangs at the bottom of the taller one.
+\begin{subfigure}[b]{0.44\textwidth}
+  \centering
+  \begin{minipage}[c][45mm][c]{\linewidth}
+    \centering
+    \adjustbox{max width=\linewidth, max totalheight=45mm}{%
+      \input{figures/examples/neuron.tex}}
+  \end{minipage}
+  \caption{A single unit.}
+  \label{fig:neuron}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.52\textwidth}
+  \centering
+  \begin{minipage}[c][45mm][c]{\linewidth}
+    \centering
+    \adjustbox{max width=\linewidth, max totalheight=45mm}{%
+      \input{figures/examples/rnn.tex}}
+  \end{minipage}
+  \caption{A recurrent cell, folded and unrolled.}
+  \label{fig:rnn}
+\end{subfigure}
+\caption[A single unit and a recurrent cell]{Two views of the same machinery:
+(\subref{fig:neuron})~one unit,
+summing weighted inputs and applying an activation; (\subref{fig:rnn})~a
+recurrent cell shown folded and unrolled over $T$ steps. Each sub-figure takes
+its own caption and label, and \texttt{adjustbox} scales an oversized fragment
+rather than its coordinates being edited. Adapted from
+\textcite{love2024nntikz}.}
+\label{fig:network_pair}
+\end{figure}

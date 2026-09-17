@@ -1,0 +1,53 @@
+% =============================================================================
+%  A recurrent cell, folded and unrolled over time.
+%
+%  Adapted from NNTikZ, Copyright (c) 2024 Fraser Love, MIT Licence:
+%  https://github.com/fraserlove/nntikz -- re-coloured with this template's
+%  palette and reduced to a bare fragment.
+%
+%  Roles match the other network figures: inputs tolblue, recurrent cells
+%  tolmagenta, outputs tolorange, wiring black. Needs the `chains' TikZ
+%  library, loaded by aml-thesis.cls.
+% =============================================================================
+\begin{tikzpicture}[
+    >=LaTeX,
+    cell/.style={rectangle, rounded corners=2mm, minimum height=2.5em,
+                 minimum width=2.5em, draw=tolmagenta, fill=tolmagenta!12, thick},
+    cellc/.style={cell, on chain, join},
+    innode/.style={circle, minimum width=2.25em, draw=tolblue,
+                   fill=tolblue!12, thick},
+    outnode/.style={circle, minimum width=2.25em, draw=tolorange,
+                    fill=tolorange!12, thick},
+    arrow/.style={-latex, semithick, draw=black}
+]
+
+    % Unrolled over time
+    \begin{scope}[start chain=going right, nodes=cellc, arrow,
+                  local bounding box=chain]
+        \path[shift={(-9em, 1em)}]
+            node (h1) {$\bm{h}_1$}
+            node     (h2) {$\bm{h}_2$}
+            node[xshift=2em] (hT) {$\bm{h}_{T}$};
+    \end{scope}
+
+    \foreach \X in {1, 2, T} {
+        \draw[arrow, latex-] (h\X.south) -- ++ (0, -2em)
+            node[below, innode] (x\X) {$\bm{x}_\X$};
+    }
+    \foreach \X in {1, 2, T} {
+        \draw[arrow] (h\X.north) -- ++ (0, 2em)
+            node[above, outnode] (y\X) {$\hat{\bm{y}}_\X$};
+    }
+    \path (x2) -- (xT) node[midway, scale=2] {\dots};
+
+    \node[left=1em of chain, scale=2] (eq) {$=$};
+
+    % Folded form
+    \node[cell, left=2em of eq] (AL) {$\bm{h}_t$};
+    \path (AL.west) ++ (-1em,2em) coordinate (aux);
+    \draw[arrow, rounded corners] (AL.east) -| ++ (1em, 2em) -- (aux) |- (AL.west);
+    % White mask so the recurrent loop passes behind the outgoing arrow.
+    \draw[white, line width=0.5em] (AL.north) -- ++ (0, 1.9em);
+    \draw[arrow] (AL.north) -- ++ (0, 2em) node[above, outnode] {$\hat{\bm{y}}_t$};
+    \draw[arrow, latex-] (AL.south) -- ++ (0, -2em) node[below, innode] {$\bm{x}_t$};
+\end{tikzpicture}
