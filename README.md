@@ -122,3 +122,20 @@ the CBS Research Portal at the link above.
 
 It has since been rewritten to fit the needs of the AML Lab at the University of Bonn. The rewrite
 was carried out with the help of Claude Opus 5.
+
+## Licence
+
+The template is released under the MIT licence: see `LICENSE`.
+
+Two things in this repository are **not** covered by that licence:
+
+- **The logos** in `figures/template/`. The Universität Bonn logo and the lab mark remain the
+  property of their owners. They are here so that a lab thesis builds out of the box, not as
+  material the MIT licence grants you rights over. The lab logo may be used by members of the AML
+  Lab and by students they supervise, for reports and theses; if you are using this template
+  outside the lab, replace both with your own. `LICENSE` carries the exact terms.
+- **The example diagrams** in `figures/examples/`, adapted from
+  [NNTikZ](https://github.com/fraserlove/nntikz), Copyright (c) 2024 Fraser Love. Those are MIT
+  licensed as well, and MIT requires the copyright and permission notice to travel with them: the
+  attribution is kept in each file header and repeated in the caption that uses it. Leave it there
+  if you keep the figures.
