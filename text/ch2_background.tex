@@ -123,6 +123,23 @@ Give every caption a short form as well, as
 of Figures prints, which keeps that list scannable instead of reproducing three
 lines of explanation per entry.
 
+Whenever it is possible, a figure should be \emph{vector} artwork with its
+text embedded as text: TikZ, or a PDF exported correctly from whatever drew
+it. Such a figure stays sharp at any zoom, prints at the resolution of the
+press rather than of your screen, and its labels remain selectable, searchable
+and set in the document's own font. A screenshot or a PNG gives up all four:
+it is fixed at whatever resolution it was captured, goes soft in print, and its
+axis labels are pixels that no one can copy or search. Plotting libraries like
+Matplotlib will save a PDF instead of a PNG on request, which is usually a
+one-line change.
+
+Not every diagram is worth writing out in TikZ, and for those we can recommend
+draw.io,\footnote{\href{https://github.com/jgraph/drawio}{github.com/jgraph/drawio}.}
+a what-you-see-is-what-you-get editor that exports to PDF and so keeps
+everything above. Drawing a block diagram by dragging boxes is a good deal
+faster than positioning nodes by hand, and the result is still vector artwork
+with real text in it.
+
 A figure taken or adapted from elsewhere must say so in its caption, with a
 citation like any other borrowed material; \Cref{fig:neural_network} shows an example how to do this.
 
