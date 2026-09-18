@@ -104,12 +104,71 @@ are concatenated and projected once more. Adapted from
 \section{Algorithms and code}
 \label{sec:algorithms}
 
-% CODE. Use listings for real source code you want reproduced verbatim, and a
-% dedicated algorithm package (algorithm2e, algpseudocode) for pseudo-code.
-% Keep listings short -- more than ~20 lines belongs in the appendix or a
-% repository, with a URL in a footnote.
+% PSEUDO-CODE vs CODE. These are different things and take different markup.
+%
+%   * Pseudo-code describes a procedure independently of any language. Use the
+%     algorithm float with an algorithmic body, as below. It is numbered,
+%     captioned and referenced like a figure, so \Cref{alg:...} works.
+%   * Source code reproduced verbatim belongs in a listing, as further down.
+%
+% Prefer pseudo-code in the body: it survives a change of framework, and a
+% reader can follow it without knowing your language. Keep listings short;
+% more than ~20 lines belongs in the appendix or a repository, with a URL in a
+% footnote.
+%
+% The class loads algorithm + algorithmic, whose dialect is uppercase (\STATE,
+% \FOR ... \TO, \IF ... \ENDIF). algorithm2e and algpseudocode are installed
+% too but use incompatible syntax; do not mix dialects.
+%
+% [tb] on the algorithm float means top-or-bottom. Algorithms are usually tall
+% and read as a unit, so unlike figures they are worth confining to the top or
+% bottom of a page rather than letting them land anywhere.
 
-\begin{lstlisting}[language=Python,caption={Keep listings short and captioned.},label={alg:example}]
+A procedure that a reader has to follow step by step belongs in an
+\emph{algorithm} float rather than in prose. Pseudo-code is numbered,
+captioned and cross-referenced like a figure, and it describes what the method
+does independently of the language you happened to implement it in: it
+therefore survives a change of framework, and a reader can follow it without
+knowing your toolchain. \Cref{alg:perceptron} gives an example.
+
+State the inputs, parameters and outputs above the body, as there, so that the
+float can be read without the surrounding text. Keep the body at the level of
+the argument: name the operations, and leave out the bookkeeping that matters
+to an implementation but not to the reader. If a step needs justifying, do it
+in the prose and refer to the line number.
+
+\begin{algorithm}[tb]
+\small
+\caption{Perceptron learning algorithm \parencite{rosenblatt1958perceptron}}
+\label{alg:perceptron}
+\textbf{Input}: Training set $\mathcal{D} = \{(\bm{x}_i, y_i)\}_{i=1}^{N}$ with $\bm{x}_i \in \mathbb{R}^d$ and $y_i \in \{-1, +1\}$\\
+\textbf{Parameters}: Number of epochs $T$\\
+\textbf{Output}: Weight vector $\bm{w}$ and bias $b$\\
+\begin{algorithmic}[1] % [1] enables line numbers
+\STATE Initialize $\bm{w} \leftarrow \bm{0}$, $b \leftarrow 0$
+\FOR{$t = 1$ \TO $T$}
+\FOR{each $(\bm{x}_i, y_i) \in \mathcal{D}$}
+\IF{$y_i (\bm{w}^\top \bm{x}_i + b) \leq 0$}
+\STATE $\bm{w} \leftarrow \bm{w} + y_i \bm{x}_i$
+\STATE $b \leftarrow b + y_i$
+\ENDIF
+\ENDFOR
+\ENDFOR
+\STATE \textbf{return} $\bm{w}, b$
+\end{algorithmic}
+\end{algorithm}
+
+% CODE, for source reproduced verbatim.
+
+Source code is the other case, and a rarer one. Reproduce it verbatim only
+when the exact text is the point: an interface a reader will call, a
+configuration that is hard to describe in words, or a subtlety that the
+pseudo-code deliberately hides. \Cref{lst:training_loop} is an example. Keep
+such listings short, and put anything longer in the appendix or a repository,
+with a URL in a footnote; a thesis is not the right medium for a file that a
+reader would rather clone than read.
+
+\begin{lstlisting}[language=Python,caption={A training loop, reproduced verbatim. Listings take a caption and a label like any other float.},label={lst:training_loop}]
 def train(model, loader, optimiser):
     for batch in loader:
         loss = model.loss(batch)

@@ -142,6 +142,40 @@
 \newtheorem{proposition}{Proposition}[chapter]
 \newtheorem{lemma}{Lemma}[chapter]
 
+% ---- Algorithms -------------------------------------------------------------
+% algorithm supplies the float; algorithmic supplies the pseudo-code body, in
+% the classic uppercase dialect (\STATE, \FOR ... \TO, \IF ... \ENDIF).
+%
+% Loaded BEFORE cleveref so that \Cref knows what an algorithm is; cleveref
+% only learns about float types that already exist when it loads.
+%
+% algorithm2e and algpseudocode are the other common choices and are installed,
+% but they use a different, incompatible dialect. Pick one and hold to it: two
+% pseudo-code styles in one thesis look like an accident.
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+
+% ---- Code listings ----------------------------------------------------------
+% For pseudo-code prefer algorithm2e/algpseudocode; listings is for real source.
+\RequirePackage{listings}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codebg}{rgb}{0.97,0.97,0.97}
+\lstdefinestyle{thesis}{
+  backgroundcolor = \color{codebg},
+  basicstyle      = \footnotesize\ttfamily,
+  keywordstyle    = \color{accent}\bfseries,
+  commentstyle    = \color{codegray}\itshape,
+  numberstyle     = \tiny\color{codegray},
+  numbers         = left,
+  numbersep       = 8pt,
+  breaklines      = true,
+  captionpos      = b,
+  frame           = none,
+  showstringspaces= false,
+  tabsize         = 2,
+}
+\lstset{style=thesis}
+
 % ---- Cross-references -------------------------------------------------------
 % cleveref is load-order sensitive: it must come AFTER both hyperref and
 % amsmath, which is why it sits here rather than up with the other packages.
@@ -149,6 +183,8 @@
 % \Cref{sec:foo} -> "Section 2", \cref{fig:a,fig:b} -> "figures 1 and 2".
 \RequirePackage[capitalise,noabbrev]{cleveref}
 \crefname{equation}{equation}{equations}
+\crefname{algorithm}{algorithm}{algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
 
 % ---- Utilities --------------------------------------------------------------
 % etoolbox gives \ifblank, used by the title page to drop an optional line when
@@ -203,27 +239,6 @@
   font      = footnotesize,
   labelfont = bf,
 }
-
-% ---- Code listings ----------------------------------------------------------
-% For pseudo-code prefer algorithm2e/algpseudocode; listings is for real source.
-\RequirePackage{listings}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codebg}{rgb}{0.97,0.97,0.97}
-\lstdefinestyle{thesis}{
-  backgroundcolor = \color{codebg},
-  basicstyle      = \footnotesize\ttfamily,
-  keywordstyle    = \color{accent}\bfseries,
-  commentstyle    = \color{codegray}\itshape,
-  numberstyle     = \tiny\color{codegray},
-  numbers         = left,
-  numbersep       = 8pt,
-  breaklines      = true,
-  captionpos      = b,
-  frame           = none,
-  showstringspaces= false,
-  tabsize         = 2,
-}
-\lstset{style=thesis}
 
 % ---- Epigraphs (optional chapter-opening quotes) ----------------------------
 \RequirePackage{epigraph}
