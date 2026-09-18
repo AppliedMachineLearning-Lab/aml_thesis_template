@@ -20,6 +20,11 @@ template too. The house rules below are opinions, not requirements of the examin
 your own regulations, which take precedence. Feel free to use it outside the AML Lab and the
 University of Bonn.
 
+## Example
+
+[`examples/compiled.pdf`](examples/compiled.pdf) is what this template produces, unedited: the
+title page, the front-matter lists, and the worked figures, tables and citations described below.
+
 ## Compiling
 
 `thesis.tex` in the repository root is the entry point. Everything else is pulled in from there.
